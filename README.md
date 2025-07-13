@@ -8,7 +8,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ## 📋 Contents
 
-- ⚙️ [Prerequisites](#️prerequisites)
+- ⚙️ [Prerequisites](#prerequisites)
 - 📦 [1. Install `wpa_supplicant`](#1-install-wpa_supplicant)
 - 📁 [2. Upload Certs & Config](#2-upload-certs--config)
 - 🎭 [3. Spoof AT&T Gateway MAC](#3-spoof-att-gateway-mac)
@@ -20,7 +20,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ---
 
-## ⚙️ Prerequisites
+## ⚙ Prerequisites
 
 - Extracted `.pem` certs and config from ATT modem (via [`mfg_dat_decode`](https://github.com/evie-lau/att-dhcp-supplicant))
 - Gateway MAC address from your ATT router
