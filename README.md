@@ -8,13 +8,13 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ## 📋 Contents
 
-- ⚙️ [Prerequisites](#prerequisites)
+- ⚙️ [Prerequisites](#️prerequisites)
 - 📦 [1. Install `wpa_supplicant`](#1-install-wpa_supplicant)
-- 📁 [Upload Certs & Config](#upload-certs--config)
-- 🎭 [Spoof AT&T Gateway MAC](#spoof-att-gateway-mac)
-- 🧪 [Test Manual Authentication](#test-manual-authentication)
-- 🚀 [Automated Startup (Override + Tracking)](#automated-startup-override--tracking)
-- 🔁 [Persist After Firmware Updates](#persist-after-firmware-updates)
+- 📁 [2. Upload Certs & Config](#2-upload-certs--config)
+- 🎭 [3. Spoof AT&T Gateway MAC](#3-spoof-att-gateway-mac)
+- 🧪 [4. Test `wpa_supplicant`](#4-test-wpa_supplicant)
+- 🚀 [5. Setup Service for Startup (Override + Tracking)](#5-setup-service-for-startup-override--tracking)
+- 🔁 [6. Persist Through Firmware Updates](#6-persist-through-firmware-updates)
 - 🧰 [Troubleshooting](#troubleshooting)
 - 🙏 [Credits](#credits)
 
