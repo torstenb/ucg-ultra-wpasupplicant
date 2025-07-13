@@ -20,7 +20,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ---
 
-## ⚙ Prerequisites
+## Prerequisites
 
 - Extracted `.pem` certs and config from ATT modem (via [`mfg_dat_decode`](https://github.com/evie-lau/att-dhcp-supplicant))
 - Gateway MAC address from your ATT router
@@ -127,7 +127,7 @@ No further action needed — you're covered on reboot and post-upgrade.
 
 ---
 
-## 🙏 Credits
+## Credits
 
 **Adapted from:**
 - [evie-lau/Unifi-gateway-wpa-supplicant](https://github.com/evie-lau/Unifi-gateway-wpa-supplicant)
