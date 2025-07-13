@@ -8,15 +8,15 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ## 📋 Contents
 
-- Prerequisites
-- Install `wpa_supplicant`
-- Upload Certs & Config
-- Spoof AT&T Gateway MAC
-- Test Manual Authentication
-- Automated Startup (Override + Tracking)
-- Persist After Firmware Updates
-- Troubleshooting
-- Credits
+- ⚙️ [Prerequisites](#prerequisites)
+- 📦 [1. Install `wpa_supplicant`](#1-install-wpa_supplicant)
+- 📁 [Upload Certs & Config](#upload-certs--config)
+- 🎭 [Spoof AT&T Gateway MAC](#spoof-att-gateway-mac)
+- 🧪 [Test Manual Authentication](#test-manual-authentication)
+- 🚀 [Automated Startup (Override + Tracking)](#automated-startup-override--tracking)
+- 🔁 [Persist After Firmware Updates](#persist-after-firmware-updates)
+- 🧰 [Troubleshooting](#troubleshooting)
+- 🙏 [Credits](#credits)
 
 ---
 
@@ -28,7 +28,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ---
 
-## 📦 Install `wpa_supplicant`
+## 📦 1. Install `wpa_supplicant`
 
 SSH into your UCG Ultra:
 
@@ -40,7 +40,10 @@ Create cert folder:
 ```bash
 mkdir -p /etc/wpa_supplicant/certs
 ```
-## 📁 Upload Certs & Config
+
+---
+
+## 📁 2. Upload Certs & Config
 From your computer:
 ```bash
 scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
@@ -52,11 +55,16 @@ ca_cert="/etc/wpa_supplicant/certs/CA_XXXXXX.pem"
 client_cert="/etc/wpa_supplicant/certs/Client_XXXXXX.pem"
 private_key="/etc/wpa_supplicant/certs/PrivateKey_PKCS1_XXXXXX.pem"
 ```
+
+---
+
 ## 🎭 3. Spoof AT&T MAC Address
 In Unifi dashboard (Settings → Internet → WAN1), set:
 * ✅ VLAN ID: 0
 * ✅ QoS Tag: 1
 * ✅ MAC Override: AT&T Gateway MAC
+
+---
 
 ## 🧪 4. Test wpa_supplicant
 Manual test:
@@ -70,7 +78,10 @@ CTRL-EVENT-CONNECTED
 ```
 Use `Ctrl+C` to exit after test.
 
-##🚀 5. Setup Service for Startup (Override + Tracking)
+
+---
+
+## 🚀 5. Setup Service for Startup (Override + Tracking)
 Rename config file
 ```bash
 mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
@@ -89,6 +100,9 @@ sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 * Enables `wpa_supplicant-wired@eth4` with clean startup
 * Adds reinstall logic for firmware survivability
 
+
+---
+
 ## 🔁 6. Persist Through Firmware Updates
 Cache install files:
 ```bash
@@ -101,14 +115,23 @@ wget http://ftp.us.debian.org/debian/pool/main/p/pcsc-lite/libpcsclite1_1.9.1-1_
 
 No further action needed — you're covered on reboot and post-upgrade.
 
-🧰 Troubleshooting
+
+---
+
+## 🧰 Troubleshooting
 * Check `systemctl status wpa_supplicant-wired@eth4`
 * Review `/etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf` paths
 * Confirm MAC spoofing applied (dashboard or shell)
 * Re-run the setup script after major UniFi OS update if needed
 
-🙏 Credits
-Adapted from:
-* `evie-lau/Unifi-gateway-wpa-supplicant`
-* `uchagani/ucg-ultra-wpa-supplicant`
-* Special thanks to `/u/superm1`, ArchWiki, and DigitalOcean systemd guides
+
+---
+
+## 🙏 Credits
+
+**Adapted from:**
+- [evie-lau/Unifi-gateway-wpa-supplicant](https://github.com/evie-lau/Unifi-gateway-wpa-supplicant)
+- [uchagani/ucg-ultra-wpa-supplicant](https://github.com/uchagani/ucg-ultra-wpa-supplicant)
+
+**Referenced Work:**
+- [superm1](https://github.com/superm1) — for foundational insights and tooling around systemd + firmware workflows
