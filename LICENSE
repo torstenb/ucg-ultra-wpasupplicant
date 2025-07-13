@@ -1,0 +1,29 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2025 torstenb
+
+This repository incorporates scripts and logic inspired by other GPLv3-licensed projects, including:
+
+- https://github.com/evie-lau/Unifi-gateway-wpa-supplicant
+- https://github.com/uchagani/ucg-ultra-wpa-supplicant
+
+Additionally, this repository redistributes unmodified Debian binaries:
+- `wpasupplicant_2.9.0-21_arm64.deb`
+- `libpcsclite1_1.9.1-1_arm64.deb`
+
+Redistribution of these packages is permitted under Debian's binary licensing policy. Refer to:
+- https://www.debian.org/legal/licenses/
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but **WITHOUT ANY WARRANTY**; without even the implied warranty of
+**MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE**.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.

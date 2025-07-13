@@ -1,0 +1,6 @@
+*.pem
+*.key
+*.log
+certs/
+packages/*.deb
+.DS_Store

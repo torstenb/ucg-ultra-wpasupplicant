@@ -1,0 +1,114 @@
+# 🛜 Unifi Cloud Gateway Ultra — Bypass ATT Modem with `wpa_supplicant`
+
+Authenticate your **Unifi Cloud Gateway Ultra** directly with AT&T fiber — no stock modem required — using `wpa_supplicant`, EAP authentication, and your extracted certificates.
+
+This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persistent service** designed for the UCG Ultra.
+
+---
+
+## 📋 Contents
+
+- Prerequisites
+- Install `wpa_supplicant`
+- Upload Certs & Config
+- Spoof AT&T Gateway MAC
+- Test Manual Authentication
+- Automated Startup (Override + Tracking)
+- Persist After Firmware Updates
+- Troubleshooting
+- Credits
+
+---
+
+## ⚙️ Prerequisites
+
+- Extracted `.pem` certs and config from ATT modem (via [`mfg_dat_decode`](https://github.com/evie-lau/att-dhcp-supplicant))
+- Gateway MAC address from your ATT router
+- SSH access to your UCG Ultra (usually as `root`)
+
+---
+
+## 📦 Install `wpa_supplicant`
+
+SSH into your UCG Ultra:
+
+```bash
+apt update
+apt install -y wpasupplicant
+```
+Create cert folder:
+```bash
+mkdir -p /etc/wpa_supplicant/certs
+```
+## 📁 Upload Certs & Config
+From your computer:
+```bash
+scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
+scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
+```
+Edit `/etc/wpa_supplicant/wpa_supplicant.conf` and use absolute paths:
+```ini
+ca_cert="/etc/wpa_supplicant/certs/CA_XXXXXX.pem"
+client_cert="/etc/wpa_supplicant/certs/Client_XXXXXX.pem"
+private_key="/etc/wpa_supplicant/certs/PrivateKey_PKCS1_XXXXXX.pem"
+```
+## 🎭 3. Spoof AT&T MAC Address
+In Unifi dashboard (Settings → Internet → WAN1), set:
+* ✅ VLAN ID: 0
+* ✅ QoS Tag: 1
+* ✅ MAC Override: AT&T Gateway MAC
+
+## 🧪 4. Test wpa_supplicant
+Manual test:
+```bash
+wpa_supplicant -ieth4 -Dwired -c/etc/wpa_supplicant/wpa_supplicant.conf
+```
+✅ Look for:
+```bash
+CTRL-EVENT-EAP-SUCCESS
+CTRL-EVENT-CONNECTED
+```
+Use `Ctrl+C` to exit after test.
+
+##🚀 5. Setup Service for Startup (Override + Tracking)
+Rename config file
+```bash
+mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
+```
+Add and run tracked setup script
+```bash
+vi /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
+```
+Paste this version-tracked script, save, then:
+```bash
+chmod +x /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
+sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
+```
+✅ This:
+* Installs a systemd override (`network-online.target`)
+* Enables `wpa_supplicant-wired@eth4` with clean startup
+* Adds reinstall logic for firmware survivability
+
+## 🔁 6. Persist Through Firmware Updates
+Cache install files:
+```bash
+mkdir -p /etc/wpa_supplicant/packages
+cd /etc/wpa_supplicant/packages
+wget http://ftp.us.debian.org/debian/pool/main/w/wpa/wpasupplicant_2.9.0-21_arm64.deb
+wget http://ftp.us.debian.org/debian/pool/main/p/pcsc-lite/libpcsclite1_1.9.1-1_arm64.deb
+```
+✅ These are used by the `reinstall-wpa.service` added in the previous script.
+
+No further action needed — you're covered on reboot and post-upgrade.
+
+🧰 Troubleshooting
+* Check `systemctl status wpa_supplicant-wired@eth4`
+* Review `/etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf` paths
+* Confirm MAC spoofing applied (dashboard or shell)
+* Re-run the setup script after major UniFi OS update if needed
+
+🙏 Credits
+Adapted from:
+* `evie-lau/Unifi-gateway-wpa-supplicant`
+* `uchagani/ucg-ultra-wpa-supplicant`
+* Special thanks to `/u/superm1`, ArchWiki, and DigitalOcean systemd guides
