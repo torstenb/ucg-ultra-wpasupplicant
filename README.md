@@ -15,7 +15,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 - 🧪 [4. Test `wpa_supplicant`](#4-test-wpa_supplicant)
 - 🚀 [5. Setup Service for Startup (Override + Tracking)](#5-setup-service-for-startup-override--tracking)
 - 🔁 [6. Persist Through Firmware Updates](#6-persist-through-firmware-updates)
-- 🧰 [Troubleshooting](#troubleshooting)
+- 🧰 [Troubleshooting](#-troubleshooting)
 - 🙏 [Credits](#credits)
 
 ---
