@@ -86,12 +86,11 @@ Rename config file
 ```bash
 mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
 ```
-Add and run tracked setup script
+Add and run version tracking setup script
 ```bash
 vi /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 ```
-Paste this version-tracking script, [setup/setup-wpasupplicant-ultra-tracked.sh](./setup/setup-wpasupplicant-ultra-tracked.sh)
-save, then:
+Paste this version-tracking script, [setup/setup-wpasupplicant-ultra-tracked.sh](./setup/setup-wpasupplicant-ultra-tracked.sh), save, then:
 ```bash
 chmod +x /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
