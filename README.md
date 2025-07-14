@@ -90,7 +90,8 @@ Add and run tracked setup script
 ```bash
 vi /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 ```
-Paste this version-tracked script, save, then:
+Paste this version-tracked script, [setup/setup-wpasupplicant-ultra-tracked.sh](./setup/setup-wpasupplicant-ultra-tracked.sh)
+save, then:
 ```bash
 chmod +x /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
