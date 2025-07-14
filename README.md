@@ -107,9 +107,10 @@ sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 Cache install files:
 ```bash
 mkdir -p /etc/wpa_supplicant/packages
-cd /etc/wpa_supplicant/packages
-wget http://ftp.us.debian.org/debian/pool/main/w/wpa/wpasupplicant_2.9.0-21_arm64.deb
-wget http://ftp.us.debian.org/debian/pool/main/p/pcsc-lite/libpcsclite1_1.9.1-1_arm64.deb
+apt-get install --download-only --reinstall wpasupplicant libpcsclite1
+cp /var/cache/apt/archives/wpasupplicant_*arm64.deb \
+   /var/cache/apt/archives/libpcsclite1_*arm64.deb \
+   /etc/wpa_supplicant/packages/
 ```
 ✅ These are used by the `reinstall-wpa.service` added in the previous script.
 
