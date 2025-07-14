@@ -62,7 +62,7 @@ private_key="/etc/wpa_supplicant/certs/PrivateKey_PKCS1_XXXXXX.pem"
 In Unifi dashboard (Settings → Internet → WAN1), set:
 * ✅ VLAN ID: 0
 * ✅ QoS Tag: 1
-* ✅ MAC Override: AT&T Gateway MAC
+* ✅ MAC Override: `<AT&T Gateway MAC>`
 
 ---
 
