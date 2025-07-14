@@ -1,6 +1,6 @@
 # 🛜 Unifi Cloud Gateway Ultra — Bypass ATT Modem with `wpa_supplicant`
 
-Authenticate your **Unifi Cloud Gateway Ultra** directly with AT&T fiber — no stock modem required — using `wpa_supplicant`, EAP authentication, and your extracted certificates.
+Authenticate your **Unifi Cloud Gateway Ultra** directly with AT&T Fiber — no stock modem required — using `wpa_supplicant`, EAP authentication, and your extracted certificates.
 
 This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persistent service** designed for the UCG Ultra.
 
@@ -22,8 +22,8 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 
 ## Prerequisites
 
-- Extracted `.pem` certs and config from ATT modem (via [`mfg_dat_decode`](https://github.com/evie-lau/att-dhcp-supplicant))
-- Gateway MAC address from your ATT router
+- Extracted `.pem` certs and config from AT&T modem (see example for [`BGW210 and BGW320`](https://github.com/0x888e/certs))
+- Gateway MAC address from your AT&T router
 - SSH access to your UCG Ultra (usually as `root`)
 
 ---
