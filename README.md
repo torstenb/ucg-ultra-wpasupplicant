@@ -49,6 +49,11 @@ From your computer:
 scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
 scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
 ```
+Set strict permissions on private keys (example):
+```bash
+chmod 600 /etc/wpa_supplicant/certs/PrivateKey_*.pem
+chmod 700 /etc/wpa_supplicant/certs
+```
 Edit `/etc/wpa_supplicant/wpa_supplicant.conf` and use absolute paths:
 ```ini
 ca_cert="/etc/wpa_supplicant/certs/CA_XXXXXX.pem"
@@ -86,14 +91,13 @@ Rename config file
 ```bash
 mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
 ```
-Add and run version tracking setup script (set your WAN interface in the script first)
+Add and run the version tracking setup script (set your WAN interface in the script first):
 ```bash
-vi /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
-```
-Paste this script, [setup/setup-wpasupplicant-ultra-tracked.sh](./setup/setup-wpasupplicant-ultra-tracked.sh), save, then:
-```bash
-chmod +x /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
-sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
+git clone https://github.com/torstenb/ucg-ultra-wpasupplicant.git
+cd ucg-ultra-wpasupplicant/setup
+vi setup-wpasupplicant-ultra-tracked.sh
+chmod +x setup-wpasupplicant-ultra-tracked.sh
+./setup-wpasupplicant-ultra-tracked.sh
 ```
 ✅ This:
 * Installs a systemd override (device-based ordering, no `network-online.target`)
@@ -114,7 +118,11 @@ cp /var/cache/apt/archives/wpasupplicant_*arm64.deb \
 ```
 ✅ These are used by the `reinstall-wpa.service` added in the previous script.
 
+⚠️ Run this step **before** fully disconnecting the AT&T modem or while you still have a secondary internet source. After a firmware update, the package may be removed and you won't be able to re-download it unless the bypass is already working.
+
 No further action needed — you're covered on reboot and post-upgrade.
+
+⚠️ After a major UniFi OS jump (for example, 3.x → 4.x), verify the service still starts. Debian base versions and interface naming can change.
 
 
 ---
@@ -124,6 +132,17 @@ No further action needed — you're covered on reboot and post-upgrade.
 * Review `/etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf` paths
 * Confirm MAC spoofing applied (dashboard or shell)
 * Re-run the setup script after major UniFi OS update if needed
+* Replace `eth4` with your WAN interface if different
+
+Log locations:
+```bash
+journalctl -u wpa_supplicant-wired@eth4 -f
+```
+
+Health check (WAN IP on eth4):
+```bash
+ip addr show eth4
+```
 
 
 ---
