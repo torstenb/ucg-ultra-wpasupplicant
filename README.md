@@ -86,7 +86,7 @@ Rename config file
 ```bash
 mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
 ```
-Add and run version tracking setup script
+Add and run version tracking setup script (set your WAN interface in the script first)
 ```bash
 vi /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 ```
