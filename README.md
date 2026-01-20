@@ -96,7 +96,7 @@ chmod +x /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
 ```
 ✅ This:
-* Installs a systemd override (`network-online.target`)
+* Installs a systemd override (device-based ordering, no `network-online.target`)
 * Enables `wpa_supplicant-wired@eth4` with clean startup
 * Adds reinstall logic for firmware survivability
 

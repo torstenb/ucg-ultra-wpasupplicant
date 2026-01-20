@@ -20,8 +20,11 @@ apply_override() {
 
   cat > "${OVERRIDE}" <<EOF
 [Unit]
-After=network-online.target
-Wants=network-online.target
+# Start as soon as the interface exists; do not wait for network-online.
+Wants=network.target
+Before=network.target
+After=sys-subsystem-net-devices-${INTERFACE}.device
+BindsTo=sys-subsystem-net-devices-${INTERFACE}.device
 
 [Service]
 ExecStartPre=/usr/bin/test -e /etc/wpa_supplicant/wpa_supplicant-wired-${INTERFACE}.conf
@@ -53,8 +56,6 @@ fi
 cat > /etc/systemd/system/reinstall-wpa.service <<EOF
 [Unit]
 Description=Reinstall wpa_supplicant after firmware update
-After=network-online.target
-Wants=network-online.target
 AssertPathExistsGlob=/etc/wpa_supplicant/packages/wpasupplicant*arm64.deb
 AssertPathExistsGlob=/etc/wpa_supplicant/packages/libpcsclite1*arm64.deb
 ConditionPathExists=!/sbin/wpa_supplicant
