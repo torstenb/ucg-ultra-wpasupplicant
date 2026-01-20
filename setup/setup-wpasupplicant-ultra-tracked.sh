@@ -7,6 +7,7 @@ set -e
 WAN_IFACE="eth4"  # ← change this to match your WAN port, e.g. eth1, eth0, etc.
 
 TEMPLATE="/lib/systemd/system/wpa_supplicant-wired@.service"
+# Tracks only the upstream unit template hash; does NOT hash your config or certs.
 MARKER="/etc/wpa_supplicant/.wpa_unit_checksum"
 OVERRIDE_DIR="/etc/systemd/system/wpa_supplicant-wired@${WAN_IFACE}.service.d"
 OVERRIDE="${OVERRIDE_DIR}/override.conf"
@@ -31,7 +32,8 @@ ExecStartPre=/usr/bin/test -e /etc/wpa_supplicant/wpa_supplicant-wired-${WAN_IFA
 ExecStart=/sbin/wpa_supplicant -i${WAN_IFACE} -Dwired -c/etc/wpa_supplicant/wpa_supplicant-wired-${WAN_IFACE}.conf
 EOF
 
-  # Store checksum of the original template to detect upstream updates
+  # Store checksum of the original template to detect upstream updates.
+  # This prevents repeated re-application unless the vendor unit changes.
   sha256sum "${TEMPLATE}" | awk '{print $1}' > "${MARKER}"
 
   systemctl daemon-reload
@@ -41,7 +43,9 @@ EOF
 }
 
 # ===========================
-# Main: Only re-apply if template changed
+# Main: Only re-apply if template changed.
+# Note: This is not watching /etc/wpa_supplicant/* or certs, so edits there
+# will not trigger re-apply/restart loops.
 # ===========================
 current_sum="$(sha256sum "${TEMPLATE}" | awk '{print $1}')"
 if [[ ! -f "${MARKER}" || "${current_sum}" != "$(cat "${MARKER}")" ]]; then
@@ -73,4 +77,4 @@ EOF
 
 systemctl daemon-reload
 systemctl enable reinstall-wpa.service
-echo "✅ Persistent reinstall service installed for interface ${INTERFACE}."
+echo "✅ Persistent reinstall service installed for interface ${WAN_IFACE}."
