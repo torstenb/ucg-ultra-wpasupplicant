@@ -91,13 +91,12 @@ On the UCG Ultra, rename config file:
 ```bash
 mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
 ```
-Then add and run the version tracking setup script (set your WAN interface in the script first):
+If your UniFi Gateway's WAN interface is different, update the script to use the correct WAN interface, then copy it to the gateway and run it:
 ```bash
 git clone https://github.com/torstenb/ucg-ultra-wpasupplicant.git
 cd ucg-ultra-wpasupplicant/setup
-vi setup-wpasupplicant-ultra-tracked.sh
-chmod +x setup-wpasupplicant-ultra-tracked.sh
-./setup-wpasupplicant-ultra-tracked.sh
+scp setup-wpasupplicant-ultra-tracked.sh root@<ucg-ip>:/usr/local/bin/
+ssh root@<ucg-ip> 'chmod +x /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh && sudo bash /usr/local/bin/setup-wpasupplicant-ultra-tracked.sh'
 ```
 ✅ This:
 * Installs a systemd override (device-based ordering, no `network-online.target`)
