@@ -44,14 +44,7 @@ mkdir -p /etc/wpa_supplicant/certs
 ---
 
 ## 📁 2. Upload Certs & Config
-On your computer, edit `wpa_supplicant.conf` and make sure the cert paths point to the folder you created in Step 1 (`/etc/wpa_supplicant/certs`).
-Example paths:
-```ini
-ca_cert="/etc/wpa_supplicant/certs/CA_XXXXXX.pem"
-client_cert="/etc/wpa_supplicant/certs/Client_XXXXXX.pem"
-private_key="/etc/wpa_supplicant/certs/PrivateKey_PKCS1_XXXXXX.pem"
-```
-Then upload:
+On your computer, edit `wpa_supplicant.conf` and make sure the cert paths point to the folder you created in Step 1 (`/etc/wpa_supplicant/certs`), then upload:
 ```bash
 scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
 scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
@@ -60,6 +53,12 @@ Then SSH into your UCG Ultra and run:
 ```bash
 chmod 600 /etc/wpa_supplicant/certs/PrivateKey_*.pem
 chmod 700 /etc/wpa_supplicant/certs
+```
+Example paths:
+```ini
+ca_cert="/etc/wpa_supplicant/certs/CA_XXXXXX.pem"
+client_cert="/etc/wpa_supplicant/certs/Client_XXXXXX.pem"
+private_key="/etc/wpa_supplicant/certs/PrivateKey_PKCS1_XXXXXX.pem"
 ```
 
 ---
