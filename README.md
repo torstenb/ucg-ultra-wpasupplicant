@@ -134,9 +134,9 @@ Log locations:
 journalctl -u wpa_supplicant-wired@eth4 -f
 ```
 
-Health check (WAN IP on eth4):
+Health check (WAN IP is often on the VLAN sub-interface, e.g. `eth4.0`):
 ```bash
-ip addr show eth4
+ip addr show eth4.0
 ```
 
 
