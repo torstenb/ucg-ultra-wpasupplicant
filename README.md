@@ -56,12 +56,7 @@ Then upload:
 scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
 scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
 ```
-Then SSH into your UCG Ultra and run:
-```bash
-chmod 600 /etc/wpa_supplicant/certs/private_key_*.pem
-chmod 700 /etc/wpa_supplicant/certs
-```
-Note: only the private key needs strict permissions; CA and client certs are not secrets (but you can tighten them too if you prefer).
+Then SSH into your UCG Ultra and continue.
 
 ---
 
