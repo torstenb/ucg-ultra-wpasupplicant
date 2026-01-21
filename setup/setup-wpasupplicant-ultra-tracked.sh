@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# setup-wpasupplicant-ultra-tracked.sh
+# Description: Configure and persist wpa_supplicant for UniFi Cloud Gateway Ultra
+#              with systemd overrides and package re-installation hooks.
+# License: GPL-3.0-or-later (see LICENSE)
+# Repository: https://github.com/torstenb/ucg-ultra-wpasupplicant
 set -e
 
 # ===========================
