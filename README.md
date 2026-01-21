@@ -15,6 +15,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 - 🧪 [4. Test `wpa_supplicant`](#-4-test-wpa_supplicant)
 - 🚀 [5. Setup Service for Startup (Override + Tracking)](#-5-setup-service-for-startup-override--tracking)
 - 🔁 [6. Persist Through Firmware Updates](#-6-persist-through-firmware-updates)
+- ✅ [Validation](#-validation)
 - 🧰 [Troubleshooting](#-troubleshooting)
 - 🙏 [Credits](#-credits)
 
@@ -119,6 +120,23 @@ No further action needed — you're covered on reboot and post-upgrade.
 
 ⚠️ After a major UniFi OS jump (for example, 3.x → 4.x), verify the service still starts. Debian base versions and interface naming can change.
 
+
+---
+
+## ✅ Validation
+
+Reboot test:
+```bash
+systemctl status wpa_supplicant-wired@eth4 --no-pager
+journalctl -u wpa_supplicant-wired@eth4 -b --no-pager | tail -n 60
+ip -4 addr show eth4.0
+```
+
+Power-cycle test (ONT off → gateway off → gateway on → wait 5 min → ONT on):
+```bash
+journalctl -u wpa_supplicant-wired@eth4 -b --no-pager | tail -n 60
+ip -4 addr show eth4.0
+```
 
 ---
 
