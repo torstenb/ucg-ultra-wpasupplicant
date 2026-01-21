@@ -56,7 +56,6 @@ Then upload:
 scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
 scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
 ```
-Then SSH into your UCG Ultra and continue.
 
 ---
 
