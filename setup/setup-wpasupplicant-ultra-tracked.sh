@@ -32,9 +32,9 @@ Wants=network.target
 Before=network.target
 After=sys-subsystem-net-devices-${WAN_IFACE}.device
 BindsTo=sys-subsystem-net-devices-${WAN_IFACE}.device
+AssertPathExists=/etc/wpa_supplicant/wpa_supplicant-wired-${WAN_IFACE}.conf
 
 [Service]
-ExecStartPre=/usr/bin/test -e /etc/wpa_supplicant/wpa_supplicant-wired-${WAN_IFACE}.conf
 ExecStart=/sbin/wpa_supplicant -i${WAN_IFACE} -Dwired -c/etc/wpa_supplicant/wpa_supplicant-wired-${WAN_IFACE}.conf
 EOF
 
