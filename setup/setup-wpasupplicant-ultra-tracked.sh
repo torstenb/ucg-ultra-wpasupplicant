@@ -37,6 +37,7 @@ StartLimitIntervalSec=10
 StartLimitBurst=4
 
 [Service]
+ExecStart=
 ExecStart=/sbin/wpa_supplicant -i${WAN_IFACE} -Dwired -c/etc/wpa_supplicant/wpa_supplicant-wired-${WAN_IFACE}.conf
 Restart=on-failure
 RestartSec=2
