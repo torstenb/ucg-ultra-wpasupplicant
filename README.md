@@ -11,7 +11,7 @@ This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persisten
 - ⚙️ [Prerequisites](#prerequisites)
 - 📦 [1. Install `wpa_supplicant`](#-1-install-wpa_supplicant)
 - 📁 [2. Upload Certs & Config](#-2-upload-certs--config)
-- 🎭 [3. Spoof AT&T Gateway MAC](#-3-spoof-att-mac-address)
+- 🎭 [3. Spoof AT&T Modem Gateway MAC](#-3-spoof-att-modem-mac-address)
 - 🧪 [4. Test `wpa_supplicant`](#-4-test-wpa_supplicant)
 - 🚀 [5. Setup Service for Startup (Override + Tracking)](#-5-setup-service-for-startup-override--tracking)
 - 🔁 [6. Persist Through Firmware Updates](#-6-persist-through-firmware-updates)
@@ -60,11 +60,12 @@ scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
 
 ---
 
-## 🎭 3. Spoof AT&T MAC Address
+## 🎭 3. Spoof AT&T Modem MAC Address
 In Unifi dashboard (Settings → Internet → WAN1), set:
+ Advanced   [manual]
 * ✅ VLAN ID: 0
 * ✅ QoS Tag: 1
-* ✅ MAC Override: `<AT&T Gateway MAC>`
+* ✅ MAC Address Clone: `<AT&T Gateway MAC>`
 
 ---
 
