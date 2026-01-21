@@ -62,6 +62,7 @@ scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
 
 ## 🎭 3. Spoof AT&T Modem MAC Address
 In Unifi dashboard (Settings → Internet → WAN1), set:
+
  Advanced   [manual]
 * ✅ VLAN ID: 0
 * ✅ QoS Tag: 1
