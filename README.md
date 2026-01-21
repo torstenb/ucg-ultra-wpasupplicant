@@ -49,7 +49,7 @@ From your computer:
 scp *.pem root@<ucg-ip>:/etc/wpa_supplicant/certs
 scp wpa_supplicant.conf root@<ucg-ip>:/etc/wpa_supplicant/
 ```
-Set strict permissions on private keys (example):
+Then SSH into your UCG Ultra and run:
 ```bash
 chmod 600 /etc/wpa_supplicant/certs/PrivateKey_*.pem
 chmod 700 /etc/wpa_supplicant/certs
@@ -72,7 +72,7 @@ In Unifi dashboard (Settings → Internet → WAN1), set:
 ---
 
 ## 🧪 4. Test wpa_supplicant
-Manual test:
+On the UCG Ultra, manual test:
 ```bash
 wpa_supplicant -ieth4 -Dwired -c/etc/wpa_supplicant/wpa_supplicant.conf
 ```
@@ -87,11 +87,11 @@ Use `Ctrl+C` to exit after test.
 ---
 
 ## 🚀 5. Setup Service for Startup (Override + Tracking)
-Rename config file
+On the UCG Ultra, rename config file:
 ```bash
 mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wired-eth4.conf
 ```
-Add and run the version tracking setup script (set your WAN interface in the script first):
+Then add and run the version tracking setup script (set your WAN interface in the script first):
 ```bash
 git clone https://github.com/torstenb/ucg-ultra-wpasupplicant.git
 cd ucg-ultra-wpasupplicant/setup
@@ -108,7 +108,7 @@ chmod +x setup-wpasupplicant-ultra-tracked.sh
 ---
 
 ## 🔁 6. Persist Through Firmware Updates
-Cache install files:
+On the UCG Ultra, cache install files:
 ```bash
 mkdir -p /etc/wpa_supplicant/packages
 apt-get install --download-only --reinstall wpasupplicant libpcsclite1
