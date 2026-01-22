@@ -4,6 +4,8 @@ Authenticate your **Unifi Cloud Gateway Ultra** directly with AT&T Fiber — no 
 
 This guide updates legacy UDM/UXG walkthroughs with a **network-aware, persistent service** designed for the UCG Ultra.
 
+Note: This method may work on many modern UniFi consoles/gateways (UniFi OS 3.x/4.x), with the major exception of the legacy USG.
+
 ---
 
 ## 📋 Contents
