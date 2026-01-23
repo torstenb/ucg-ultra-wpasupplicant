@@ -151,14 +151,13 @@ Files created on the UCG Ultra:
 ```
 /etc/wpa_supplicant/
 ├── wpa_supplicant-wired-eth4.conf
-└── certs/
-    ├── ca_certs_*.pem
-    ├── client_cert_*.pem
-    └── private_key_*.pem
-
-/etc/wpa_supplicant/packages/
-├── wpasupplicant_*arm64.deb
-└── libpcsclite1_*arm64.deb
+├── certs/
+│   ├── ca_certs_*.pem
+│   ├── client_cert_*.pem
+│   └── private_key_*.pem
+└── packages/
+    ├── wpasupplicant_*arm64.deb
+    └── libpcsclite1_*arm64.deb
 
 /etc/systemd/system/
 ├── wpa_supplicant-wired@eth4.service.d/override.conf
