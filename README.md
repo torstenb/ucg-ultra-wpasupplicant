@@ -150,6 +150,7 @@ ip -4 addr show eth4.0
 Files created on the UCG Ultra:
 ```
 /etc/wpa_supplicant/
+├── .wpa_unit_checksum
 ├── wpa_supplicant-wired-eth4.conf
 ├── certs/
 │   ├── ca_certs_*.pem
@@ -163,8 +164,8 @@ Files created on the UCG Ultra:
 ├── wpa_supplicant-wired@eth4.service.d/override.conf
 └── reinstall-wpa.service
 
-/etc/wpa_supplicant/.wpa_unit_checksum
-/usr/local/bin/setup-wpasupplicant-ultra-tracked.sh
+/usr/local/bin/
+└── setup-wpasupplicant-ultra-tracked.sh
 ```
 
 Replace `eth4` with your WAN interface if different.
